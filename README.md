@@ -17,18 +17,18 @@ npm install write-excel-file @onparallel/write-excel-file-hide-rows-and-columns
 Register the feature when calling `writeXlsxFile()`. `write-excel-file/node`'s built-in `SheetOptions` does not know about `hiddenRows` / `hiddenColumns`, so intersect it with the `HideRowsAndColumnsSheetOptions` type exported by this package:
 
 ```ts
-import writeXlsxFile, { type SheetOptions } from 'write-excel-file/node'
+import writeXlsxFile, { type SheetOptions } from "write-excel-file/node";
 import hideRowsAndColumns, {
-	type HideRowsAndColumnsSheetOptions
-} from '@onparallel/write-excel-file-hide-rows-and-columns'
+  type HideRowsAndColumnsSheetOptions,
+} from "@onparallel/write-excel-file-hide-rows-and-columns";
 
 const sheetOptions: SheetOptions<any> & HideRowsAndColumnsSheetOptions = {
-	sheet: 'Sheet1',
-	hiddenRows: [4, 6, { from: 11, to: 21 }], // hides rows 4, 6, and 11–21 (1-based)
-	hiddenColumns: [2, { from: 5, to: 7 }] // hides columns B and E–G (1-based)
-}
+  sheet: "Sheet1",
+  hiddenRows: [4, 6, { from: 11, to: 21 }], // hides rows 4, 6, and 11–21 (1-based)
+  hiddenColumns: [2, { from: 5, to: 7 }], // hides columns B and E–G (1-based)
+};
 
-await writeXlsxFile(data, sheetOptions, { features: [hideRowsAndColumns] }).toFile('out.xlsx')
+await writeXlsxFile(data, sheetOptions, { features: [hideRowsAndColumns] }).toFile("out.xlsx");
 ```
 
 If you use the intersection in many places, alias it locally: `type MySheetOptions = SheetOptions<any> & HideRowsAndColumnsSheetOptions`.
@@ -45,11 +45,11 @@ Both `hiddenRows` and `hiddenColumns` accept the same shape: an array of `Hidden
 | `{ from: number, to: number }` | `{ from: 10, to: 20 }` | Hide rows/columns 10 through 20 (inclusive)         |
 
 ```ts
-export type HiddenRange = number | { from: number; to: number }
+export type HiddenRange = number | { from: number; to: number };
 
 export interface HideRowsAndColumnsSheetOptions {
-	hiddenRows?: HiddenRange[]
-	hiddenColumns?: HiddenRange[]
+  hiddenRows?: HiddenRange[];
+  hiddenColumns?: HiddenRange[];
 }
 ```
 
@@ -63,10 +63,10 @@ If you also pass `columns` with `width` to `writeXlsxFile()`, this feature will 
 
 ```ts
 const sheetOptions: SheetOptions<any> & HideRowsAndColumnsSheetOptions = {
-	sheet: 'Sheet1',
-	columns: [{ width: 20 }, {}, { width: 30 }],
-	hiddenColumns: [2] // hides column B; A and C keep their custom widths
-}
+  sheet: "Sheet1",
+  columns: [{ width: 20 }, {}, { width: 30 }],
+  hiddenColumns: [2], // hides column B; A and C keep their custom widths
+};
 ```
 
 ## How it works
