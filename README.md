@@ -85,9 +85,9 @@ See [`src/hideRowsAndColumns.ts`](./src/hideRowsAndColumns.ts) for the implement
 The [`examples/`](./examples) folder contains runnable TypeScript scripts that emit `.xlsx` files next to themselves. Open the generated files in Excel/Numbers/LibreOffice to confirm rows and columns are hidden as expected.
 
 ```sh
-npm install
-npx tsx examples/hide-rows.ts        # run a single example
-npm run examples                      # run them all
+pnpm install
+pnpm exec tsx examples/hide-rows.ts # run a single example
+pnpm run examples                   # run them all
 ```
 
 See [`examples/README.md`](./examples/README.md) for the full list.
@@ -95,10 +95,10 @@ See [`examples/README.md`](./examples/README.md) for the full list.
 ## Development
 
 ```sh
-npm install
-npm test          # vitest
-npm run typecheck # tsc --noEmit
-npm run build     # emit dist/ via tsc
+pnpm install
+pnpm test          # vitest
+pnpm run typecheck # tsc --noEmit
+pnpm run build     # emit dist/ via tsc
 ```
 
 ## License
